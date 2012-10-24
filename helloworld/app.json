@@ -1,0 +1,7 @@
+{
+    "name"        : "helloworld",
+    "displayName" : "HelloWorld",
+    "jsFiles"     : ["helloworld.js"],
+    "type"        : "foreground",
+    "iconFile"    : "app_hello.png"
+}

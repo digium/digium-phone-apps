@@ -1,0 +1,7 @@
+{ 
+    "name": "CRM",
+    "displayName": "CRM",
+    "jsFiles": ["startup.js"],
+    "type" : "foreground",
+    "hasIdle": false
+}

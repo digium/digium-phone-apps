@@ -1,0 +1,7 @@
+{ 
+    "name": "bigclock",
+    "displayName": "BigClock",
+    "jsFiles": ["startup.js"],
+    "type": "foreground",
+    "hasIdle": true
+}

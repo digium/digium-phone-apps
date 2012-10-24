@@ -1,0 +1,8 @@
+{
+    "name": "weather",
+    "displayName" : "Weather",
+    "jsFiles": ["weather.js"],
+    "iconFile"  : "app_weather.png",
+    "type" : "foreground",
+    "hasIdle": true
+}
