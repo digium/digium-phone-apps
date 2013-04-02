@@ -90,7 +90,7 @@ var response_example = {
   "history_url": "http://www.wunderground.com/history/airport/KCASANFR58/2012/6/27/DailyHistory.html",
   "ob_url": "http://www.wunderground.com/cgi-bin/findweather/getForecast?query=37.773285,-122.417725"
   }
-}
+};
 
 var server = http.createServer(function (req, res) {
     res.writeHead(200, {'Content-Type': 'application/json'});
@@ -99,6 +99,6 @@ var server = http.createServer(function (req, res) {
     res.end(JSON.stringify(response_example));
 });
 
-server.clientError = function(exception) {console.log(exception);}
+server.clientError = function(exception) {console.log(exception);};
 server.listen(8125);
 console.log('Server running at 8125');
