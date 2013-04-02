@@ -5,7 +5,7 @@ var util = require('util');
 var genericConfirm = require('genericConfirm');
 
 var local_config = util.defaults(app.getConfig().settings, {
-    server: "http://192.168.0.1:8126"
+    server: "http://10.19.135.2:8126"
 });
 
 var current_call = null;
@@ -62,16 +62,25 @@ function setup_user_group(group) {
     group.message = message;
 }
 
-digium.handlers.onstart = function() {
+var onstart = function() {
     print("onstart() called\n");
     setup_call_group(callGroup);
     setup_user_group(userGroup);
     userGroup[1].label = digium.app.name + " is running.";
 };
+digium.event.observe({
+    'eventName' : 'digium.app.start',
+    'callback'  : onstart
+});
 
-digium.handlers.onbackground = function() {
+digium.app.exitAfterBackground = false;
+var onbackground = function() {
     print("onbackground() called\n");
 };
+digium.event.observe({
+    'eventName' : 'digium.app.background',
+    'callback'  : onbackground
+});
 
 function set_incoming_call_softkeys(win) {
     win.clearSoftkeys();
@@ -115,7 +124,7 @@ function fetch_notes(callerid) {
     request.send();
 }
 
-digium.handlers.onforeground = function() {
+var onforeground = function() {
     print("onforeground() called\n");
     if (!current_call) {
         window.clear();
@@ -133,7 +142,7 @@ digium.handlers.onforeground = function() {
                             // Removing the onbackground handler will cause the
                             // application to shutdown when trying to background
                             // the application.
-                            digium.handlers.onbackground = undefined;
+                            digium.app.exitAfterBackground = true;
                             digium.background();
                         } else {
                             digium.foreground();
@@ -162,10 +171,18 @@ digium.handlers.onforeground = function() {
         window.add(callGroup);
     }
 };
+digium.event.observe({
+    'eventName' : 'digium.app.foreground',
+    'callback'  : onforeground
+});
 
-digium.handlers.onexit = function() {
+var onexit = function() {
     print("onexit() called\n");
 };
+digium.event.observe({
+    'eventName' : 'digium.app.exit',
+    'callback'  : onexit
+});
 
 function get_callerid(remoteInfo) {
     var obj = {};
@@ -175,7 +192,8 @@ function get_callerid(remoteInfo) {
     return obj;
 }
 
-function handle_new_call(msg) {
+function handle_new_call(params) {
+    var msg = params.eventData;
     print("on new called:\n");
     print("  state: " + msg.state +"\n");
     print("  accountSlot: " + msg.accountSlot + "\n");
@@ -214,5 +232,7 @@ function handle_new_call(msg) {
     });
 }
 
-digium.handlers.onincomingcall = handle_new_call;
-// digium.handlers.onoutgoingcall = handle_new_call;
+digium.event.observe({
+    'eventName' : 'digium.phone.incoming_call',
+    'callback'  : handle_new_call 
+});
