@@ -20,7 +20,7 @@ var local_config = {}; // cache our local config so that we can use util.default
 var timer; // keep track of our timer so that we never have more than one
 
 var form = require('genericForm');
-digium.handlers.onbackground = function() {};
+digium.app.exitAfterBackground = false;
 
 var current_weather = {
     location : "",
@@ -186,7 +186,7 @@ form.processSubmit = function() {
 };
 
 // use the main window for preferences
-digium.handlers.onforeground = function() {
+var onforeground = function() {
     // any local_config settings take priority
     local_config = util.defaults(local_config, app_config);
 
@@ -206,15 +206,21 @@ digium.handlers.onforeground = function() {
         forceRedraw : true
     });
 };
+digium.event.observe({
+    'eventName' : 'digium.app.foreground',
+    'callback'  : onforeground
+});
 
 // set up the idlescreen window.
 digium.app.idleWindow.hideBottomBar = true;
 setup(digium.app.idleWindow) ;
-digium.handlers.onshowidlescreen =
-    function() {
+var onshowidlescreen = function() {
         go(digium.app.idleWindow,
            function() { return digium.app.idleWindowShown ; } ) ;
     } ;
-
+digium.event.observe({
+    'eventName' : 'digium.app.idle_screen_show',
+    'callback'  : onshowidlescreen
+});
 
 print('done loading weather\n');
