@@ -2,7 +2,7 @@
 
 # Pull the application name from the app.json file.
 #APPNAME=`cat app.json | grep "name" | cut -f 2 -d\: | sed -e "s/\s\+\"\(\w\+\)\",/\1/"`
-APPNAME=CRM
+APPNAME=callerId
 
 #
 if [ -z ${IP_ADDR} ]; then

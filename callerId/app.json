@@ -1,6 +1,8 @@
 { 
-    "name": "CRM",
-    "displayName": "CRM",
+    "name": "callerId",
+    "displayName": {
+		"fallback"	: "callerId"
+	},
     "jsFiles": ["startup.js"],
     "type" : "foreground",
     "hasIdle": false

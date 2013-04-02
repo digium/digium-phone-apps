@@ -1,5 +1,5 @@
-Customer Relationship Management Example
-========================================
+Enhanced CallerID Example
+=========================
 
 This application demonstrates hooking call events to display a screen pop on the
 phone on an incomming call.
@@ -14,7 +14,7 @@ $ # edit startup.js and set your default server in local config.
 $ ./update install install
 $ # Edit server.js and add names, numbers that will match the callerid of your inbound calls.
 $ node server.js &
-$ Start the application on the phone. Menu -> Applications -> CRM
+$ Start the application on the phone. Menu -> Applications -> callerId
 
 Call the phone with the callerid you set in server.js and the phone will fetch
 and display the note you added in server.js
