@@ -97,25 +97,25 @@ function get_weather(win) {
 						apiResponseError({'error' : weather_response.response.error});
 						return;
 					}
-					current_weather['location'] = weather_response.current_observation['display_location']['full'];
+					current_weather.location = weather_response.current_observation['display_location']['full'];
 					if (1 == local_config.temp_scale) {
-						current_weather['temp'] = weather_response.current_observation['temp_f'] + " F";
+						current_weather.temp = weather_response.current_observation['temp_f'] + " F";
 					} else {
-						current_weather['temp'] = weather_response.current_observation['temp_c'] + " C";
+						current_weather.temp = weather_response.current_observation['temp_c'] + " C";
 					}
-					current_weather['description'] = weather_response.current_observation['weather'];
-					current_weather['relative_humidity'] = weather_response.current_observation['relative_humidity'];
+					current_weather.description = weather_response.current_observation['weather'];
+					current_weather.relative_humidity = weather_response.current_observation['relative_humidity'];
 					if (1 == local_config.wind_units) {
-						current_weather['wind_speed'] = weather_response.current_observation['wind_mph'];
+						current_weather.wind_speed = weather_response.current_observation['wind_mph'];
 					} else {
-						current_weather['wind_speed'] = weather_response.current_observation['wind_kph'];
+						current_weather.wind_speed = weather_response.current_observation['wind_kph'];
 					}
-					current_weather['wind_dir'] = weather_response.current_observation['wind_dir'];
+					current_weather.wind_dir = weather_response.current_observation['wind_dir'];
 
 					// get our icon and make it short
 					var icon = weather_response.current_observation['icon_url'];
 					icon = icon.replace(/.*\//, '');
-					current_weather['icon'] = icon;
+					current_weather.icon = icon;
 
 					refresh_display(win);
 
