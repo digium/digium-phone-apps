@@ -1,7 +1,6 @@
 
-// If this weren't defined, the app would shut down as soon as it was off the 
-// screen.
-digium.handlers.onbackground = function() {}
+// Allows this application to run in the background.
+digium.app.exitAfterBackground = false;
 
 // Set up widgets for the window (a big, centered clock).  After this is
 // done, the only thing that changes is the text content of the label.
@@ -46,14 +45,18 @@ function go(win, visiblePredicate) {
 // from the app screen.  Whenever the fullscreen window is displayed, 
 // go() is called to start drawing the window.
 setup(window) ;
-digium.handlers.onforeground = function() { 
-        go(window, function() { return digium.app.inForeground ; }) ; }
+digium.event.observe({
+    'eventName'     : 'digium.app.foreground',
+    'callback'      : function () { go(window, function() { return digium.app.inForeground ; }) ; }
+});
 
 // set up the idlescreen window.
 digium.app.idleWindow.hideBottomBar = true ;
 setup(digium.app.idleWindow) ;
-digium.handlers.onshowidlescreen = 
-    function() { 
+digium.event.observe({
+    'eventName'     : 'digium.app.idle_screen_show',
+    'callback'      : function() {
         go(digium.app.idleWindow, 
            function() { return digium.app.idleWindowShown ; } ) ; 
-    } ;
+    }
+});
