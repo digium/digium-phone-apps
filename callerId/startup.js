@@ -128,12 +128,12 @@ callerId.setOnCallSoftkeys = function () {
 
 //issue a NetRequest to an external server to retrieve any information about the incoming caller
 callerId.fetchNotes = function(params) {
-	var callerId = params.callerId;
+	var cid = params.callerId;
 
 	//create the NetRequest object (similar to a standard XMLHttpRequest object in a web browser)
 	var request = new NetRequest();
 	//assign the caller id name as the 'name' url parameter
-	request.open("GET", this.config.server + "?name=" + encodeURI(callerId.name), true);
+	request.open("GET", this.config.server + "/" + cid.name.replace(/\ /, '%20'), true);
 
 	//register a callback for any changes in the connection state
 	//if the server responds with any info about the caller this function
@@ -298,7 +298,7 @@ callerId.init = function () {
 	//cache the app's config settings with default values
 	var config = app.getConfig().settings;
 	this.config = util.defaults(config, {
-		'server'	: 'http://10.10.7.130/callerId_phone_app.php'  //CHANGE THIS TO YOUR SERVER ADDRESS
+		'server'	: 'http://10.19.135.2:8126'  //CHANGE THIS TO YOUR SERVER ADDRESS
 	});
 	this.currentCall = null;
 	digium.app.exitAfterBackground = false;
