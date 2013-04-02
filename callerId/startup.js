@@ -47,7 +47,7 @@ callerId.renderCallGroup = function () {
     field.align(Widget.LEFT | Widget.WRAP | Widget.TOP);
     group.add(field);
 	widgets.notes = field;
-}
+};
 
 //create the userGroup widgets - these are the widgets that are displayed when
 //there is no incoming call and the app is in an idle state
