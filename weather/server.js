@@ -100,5 +100,5 @@ var server = http.createServer(function (req, res) {
 });
 
 server.clientError = function(exception) {console.log(exception);}
-server.listen(8125, "192.168.0.1");
+server.listen(8125);
 console.log('Server running at 8125');

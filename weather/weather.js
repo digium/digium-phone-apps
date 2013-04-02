@@ -84,7 +84,9 @@ function get_weather(win) {
 	local_config = util.defaults(local_config, app_config);
 
 	var request = new NetRequest();
-	request.open("GET", "http://api.wunderground.com/api/" + local_config.api_key + "/conditions/q/" + local_config.zipcode + ".json", true);
+    // No need to hit wunderground when developing.
+	// request.open("GET", "http://api.wunderground.com/api/" + local_config.api_key + "/conditions/q/" + local_config.zipcode + ".json", true);
+	request.open("GET", "http://10.19.135.2:8125/" + local_config.api_key + "/conditions/q/" + local_config.zipcode + ".json", true);
 
 	request.onreadystatechange = function () {
 			if (4 == request.readyState) {
