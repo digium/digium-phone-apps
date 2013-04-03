@@ -30,10 +30,10 @@ function go(win, visiblePredicate) {
         h -=12 ;
     }
 
-    m = now.getMinutes() ;
+    var m = now.getMinutes() ;
     if (m < 10) m = "0" + m ;
 
-    s = now.getSeconds() ;
+    var s = now.getSeconds() ;
     if (s < 10) s = "0" + s ;
 
     win[0].label = h + ":" + m +":" + s + " " + ampm ;
