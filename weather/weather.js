@@ -35,8 +35,8 @@ function init() {
 		"relative_humidity" : "",
 		"wind_speed" : "",
 		"wind_dir" : "",
-		"icon" : "unknown.gif",
-	}
+		"icon" : "unknown.gif"
+	};
 	form_items = get_form_items();
 	digium.app.exitAfterBackground = false;
 	setup(digium.app.idleWindow) ;
@@ -129,7 +129,7 @@ function get_weather(win) {
 					util.debug("request error: " + request.status + " : " + request.statusText + "\n");
 				}
 			}
-	}
+	};
 
 	request.send(null);
 
@@ -145,7 +145,8 @@ function setup(win) {
 	win.add(img);
 
 	for (var i=0; i<5; i++) {
-		var label = new Text(50, cursor++ * Text.LINE_HEIGHT, win.w - 50, Text.LINE_HEIGHT);
+		var label = new Text(50, cursor * Text.LINE_HEIGHT, win.w - 50, Text.LINE_HEIGHT);
+		cursor++;
 		label.align(Widget.CENTER);
 		win.add(label);
 	}
@@ -178,7 +179,7 @@ form.processSubmit = function() {
 	save_prefs();
 	get_weather(digium.app.idleWindow);
 	digium.background();
-}
+};
 
 //return the data structure for the genericForm instance used to get 
 //zip code, etc.
@@ -215,7 +216,7 @@ function get_form_items() {
 			]
 		}
 	}];
-};
+}
 
 // use the main window for preferences, display the form when the
 // app is foregrounded
