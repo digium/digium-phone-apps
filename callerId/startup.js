@@ -133,7 +133,7 @@ callerId.fetchNotes = function(params) {
 	//create the NetRequest object (similar to a standard XMLHttpRequest object in a web browser)
 	var request = new NetRequest();
 	//assign the caller id name as the 'name' url parameter
-	request.open("GET", this.config.server + "/" + cid.name.replace(/\ /, '%20'), true);
+	request.open("GET", this.config.server + "/" + encodeURI(cid.name), true);
 
 	//register a callback for any changes in the connection state
 	//if the server responds with any info about the caller this function

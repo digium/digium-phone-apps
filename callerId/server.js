@@ -18,8 +18,8 @@ var mspiceland_record = {
 };
 
 var db = {};
-db['/' + sruffell_record.name.replace(/\ /, '%20')] = sruffell_record;
-db['/' + mspiceland_record.name.replace(/\ /, '%20')] = mspiceland_record;
+db['/' + encodeURI(sruffell_record.name)] = sruffell_record;
+db['/' + encodeURI(mspiceland_record.name)] = mspiceland_record;
 
 var server = http.createServer(function (req, res) {
     res.writeHead(200, {'Content-Type': 'application/json'});
