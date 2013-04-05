@@ -22,6 +22,10 @@ digium.event.observe({
         //This handler is called when any assigned softkeys/hardkeys are pressed
         //It receives the id of the selected item and the action as parameters
         handler.processMenuAction = function (params) {
+
+            if (undefined == params.actionId)
+                params.actionId = 'select'
+
             switch (params.actionId) {
             case 'select':
                 selectCallback(params.selectionId);
@@ -34,6 +38,7 @@ digium.event.observe({
                 break;
             case 'exit':
             default:
+                util.debug("Exiting " + JSON.stringify(params))
                 digium.background();
                 break;
             }
