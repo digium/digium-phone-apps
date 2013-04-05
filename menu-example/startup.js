@@ -1,17 +1,18 @@
 var app = require('app');
 app.init({langFiles : ['strings-en_us']});
+var util = require('util');
 var genericMenu = require('genericMenu');
 
 function selectCallback(selection) {
-    print("Selected " + selection + "\n");
+    util.debug("Selected " + selection);
 }
 
 function helpCallback(selection) {
-   print("Getting help for " + selection + "\n");
+   util.debug("Getting help for " + selection);
 }
 
 function getInfo(selection) {
-    print("Getting info for " + selection + "\n");
+    util.debug("Getting info for " + selection);
 }
 
 digium.event.observe({

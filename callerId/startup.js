@@ -82,7 +82,7 @@ callerId.bindListeners = function () {
 					}
 				};
 			}
-			print("onbackground() called\n");
+			util.debug("onbackground() called");
 		}.bind(this)
 	});
 
@@ -90,7 +90,7 @@ callerId.bindListeners = function () {
 	digium.event.observe({
 		'eventName'		: 'digium.app.exit',
 		'callback'		: function () {
-			print("onexit() called\n");
+			util.debug("onexit() called");
 		}
 	});
 
@@ -178,7 +178,7 @@ callerId.fetchNotes = function(params) {
 //callerId.show will be bound to the 'digium.app.foreground' event
 //this function is called whenever the app is foregrounded, or digium.foreground() is called
 callerId.show = function () {
-	print("onforeground() called\n");
+	util.debug("onforeground() called");
 	if (!this.currentCall) {
 		//if there is no current call, the main screen is displayed with a button to shut down the app
 		window.clear();
@@ -279,7 +279,7 @@ callerId.handleNewCall = function (params) {
 					digium.foreground();
 				}
 			} else if ( "CONFIRMED" == obj.state) {
-				print("CONFIRMED\n");
+				util.debug("CONFIRMED");
 				this.currentCall = obj;
 				//add a softkey to end the call
 				this.setOnCallSoftkeys();
