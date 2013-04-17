@@ -1,0 +1,51 @@
+<!--
+This code provides a convenient remote view of a digium phone screen 
+to aid in app development. Update the IP address with the IP of your 
+phone and then open the page in a modern browser. (Tested on Chrome.) 
+The page will update live with a screen image from your digium phone. 
+
+Created by Billy Chia
+Copyright 2013 Licensed under Creative Commons BY 3.0
+You are free to Share, Remix and make commerican use of the work
+--> 
+<!DOCTYPE HTML>
+<html>
+  <head>
+  </head>
+  <body>
+    <!-- create canvas. 320x160 is size of d70 screen --> 
+    <canvas id="canvas" width="320" height="160"></canvas>
+    <script>
+        var phoneIP = '10.24.12.212'; // <-- your phone IP here
+
+        // normalize requestAnimationFrame
+        (function() {
+            var requestAnimationFrame = window.requestAnimationFrame || 
+                                        window.mozRequestAnimationFrame || 
+                                        window.webkitRequestAnimationFrame || 
+                                        window.msRequestAnimationFrame; 
+            window.requestAnimationFrame = requestAnimationFrame;
+        })();
+
+        //create canvas, context and image object
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        var imageObj = new Image();
+   
+        //when image loads draw to canvas
+        imageObj.onload = function() {
+          ctx.drawImage(imageObj, 0, 0);
+        };
+        imageObj.src = 'http://' + phoneIP + '/cgi-bin/screen_shot';
+
+        //create draw function to update image with requestAnimationFrame()
+        function draw() {
+            imageObj.src = 'http://' + phoneIP + '/cgi-bin/screen_shot';
+            requestAnimationFrame(draw);
+        }
+
+        //start redrawing screen
+        draw();
+    </script>
+  </body>
+</html>
