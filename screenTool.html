@@ -6,46 +6,55 @@ The page will update live with a screen image from your digium phone.
 
 Created by Billy Chia
 Copyright 2013 Licensed under Creative Commons BY 3.0
-You are free to Share, Remix and make commerican use of the work
+You are free to Share, Remix and make commercial use of the work
 --> 
 <!DOCTYPE HTML>
 <html>
   <head>
   </head>
   <body>
+    <p>
+    <label for="phone_ip">Phone IP Address: </label><input type="text" name="phone_ip" value="" id="phone_ip">
+    <label for="frames_per_second">Frames per Second: </label><input type="text" name="frames_per_second" value="1" id="frames_per_second">
+    <input type="button" name="Start" value="Start" id="toggle_button" onclick="toggle();">
+    </p>
     <!-- create canvas. 320x160 is size of d70 screen --> 
     <canvas id="canvas" width="320" height="160"></canvas>
-    <script>
-        var phoneIP = '10.24.12.212'; // <-- your phone IP here
+    <script type="text/javascript" charset="utf-8">
 
-        // normalize requestAnimationFrame
-        (function() {
-            var requestAnimationFrame = window.requestAnimationFrame || 
-                                        window.mozRequestAnimationFrame || 
-                                        window.webkitRequestAnimationFrame || 
-                                        window.msRequestAnimationFrame; 
-            window.requestAnimationFrame = requestAnimationFrame;
-        })();
+      //create canvas, context and image object
+      var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext('2d');
+      var imageObj = new Image();
+      var phoneIP = '';
+      var intervalID = '';
 
-        //create canvas, context and image object
-        var canvas = document.getElementById('canvas');
-        var ctx = canvas.getContext('2d');
-        var imageObj = new Image();
-   
-        //when image loads draw to canvas
-        imageObj.onload = function() {
-          ctx.drawImage(imageObj, 0, 0);
-        };
-        imageObj.src = 'http://' + phoneIP + '/cgi-bin/screen_shot';
+      //when image loads draw to canvas
+      imageObj.onload = function() {
+        ctx.drawImage(imageObj, 0, 0);
+      };
 
-        //create draw function to update image with requestAnimationFrame()
-        function draw() {
-            imageObj.src = 'http://' + phoneIP + '/cgi-bin/screen_shot';
-            requestAnimationFrame(draw);
+      //create draw function to update the canvas.
+      function draw() {
+          imageObj.src = 'http://' + phoneIP + '/cgi-bin/screen_shot';
+      }
+
+      function toggle() {
+        var button = document.getElementById('toggle_button');
+        if (intervalID) {
+          clearInterval(intervalID);
+          intervalID = '';
+          button.value = "Start";
+        } else {
+          button.value = "Stop";
+          phoneIP = document.getElementById('phone_ip').value;
+          var framesPerSecond = document.getElementById('frames_per_second').value;
+          // Draw the screen periodically:
+          var delay = 1000 / framesPerSecond;
+          intervalID = window.setInterval(draw, delay);
         }
-
-        //start redrawing screen
-        draw();
+      }
+      
     </script>
   </body>
 </html>
