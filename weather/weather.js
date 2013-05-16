@@ -181,6 +181,10 @@ form.processSubmit = function() {
 	digium.background();
 };
 
+form.processBack = function() {
+    digium.background();
+};
+
 //return the data structure for the genericForm instance used to get 
 //zip code, etc.
 function get_form_items() {
