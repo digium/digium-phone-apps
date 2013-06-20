@@ -1,0 +1,6 @@
+{
+    "name"        : "genericform",
+    "displayName" : "genericForm",
+    "jsFiles"     : ["startup.js"],
+    "type"        : "foreground"
+}
