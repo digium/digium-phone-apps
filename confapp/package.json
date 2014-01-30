@@ -1,0 +1,9 @@
+{
+  "name": "confapp",
+  "version": "0.0.1",
+  "description": "Conference Application for Digium Phones",
+  "main": "server.js",
+  "dependencies": {
+    "asterisk-ami": "0.1.0"
+  }
+}
