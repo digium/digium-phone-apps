@@ -1,60 +1,92 @@
 <!--
-This code provides a convenient remote view of a digium phone screen 
-to aid in app development. Update the IP address with the IP of your 
-phone and then open the page in a modern browser. (Tested on Chrome.) 
+This code provides a convenient remote view of the digium phone screen 
+to aid in app development. Save as a local file and open in a modern
+browser. (Tested on Chrome.) Type in the IP address of your phone and 
+click on 'Add'. This will add the phone screen to the page. 
 The page will update live with a screen image from your digium phone. 
 
 Created by Billy Chia
 Copyright 2013 Licensed under Creative Commons BY 3.0
-You are free to Share, Remix and make commercial use of the work
+You are free to share, remix and make commercial use of the work
 --> 
+
 <!DOCTYPE HTML>
 <html>
-  <head>
-  </head>
-  <body>
-    <p>
-    <label for="phone_ip">Phone IP Address: </label><input type="text" name="phone_ip" value="" id="phone_ip">
-    <label for="frames_per_second">Frames per Second: </label><input type="text" name="frames_per_second" value="1" id="frames_per_second">
-    <input type="button" name="Start" value="Start" id="toggle_button" onclick="toggle();">
-    </p>
-    <!-- create canvas. 320x160 is size of d70 screen --> 
-    <canvas id="canvas" width="320" height="160"></canvas>
-    <script type="text/javascript" charset="utf-8">
+    <head>
+    </head>
+    <body>
+        <p>
+            <label for="phone_ip">Phone IP Address: </label>
+            <input type="text" name="phone_ip" value="" id="phone_ip">
+            <input type="button" name="Add" value="Add" id="add_button" onclick="add();">
+        </p>
+        <script>
 
-      //create canvas, context and image object
-      var canvas = document.getElementById('canvas');
-      var ctx = canvas.getContext('2d');
-      var imageObj = new Image();
-      var phoneIP = '';
-      var intervalID = '';
+        var divCount = 0;
 
-      //when image loads draw to canvas
-      imageObj.onload = function() {
-        ctx.drawImage(imageObj, 0, 0);
-      };
+        var getDimensions = function (phoneIP, onImageLoad) {
+            var image = new Image();
+            image.src = 'http://' + phoneIP + '/cgi-bin/screen_shot';
+            image.onload = function () {
+                var id = phoneIP,
+                    w = this.width,
+                    h = this.height;
+                onImageLoad(id, w, h); // execute onImageLoad() callback 
+            };
+        };
 
-      //create draw function to update the canvas.
-      function draw() {
-          imageObj.src = 'http://' + phoneIP + '/cgi-bin/screen_shot';
-      }
+        var makeCanvasElement = function (id, w, h) {
+            var newCanvas = document.createElement('canvas'),
+                div = document.getElementById(divCount);
+            newCanvas.setAttribute('id', id);
+            newCanvas.setAttribute('width', w);
+            newCanvas.setAttribute('height', h);
+            div.replaceChild(newCanvas, div.firstChild);
+            divCount += 1;
+        };
 
-      function toggle() {
-        var button = document.getElementById('toggle_button');
-        if (intervalID) {
-          clearInterval(intervalID);
-          intervalID = '';
-          button.value = "Start";
-        } else {
-          button.value = "Stop";
-          phoneIP = document.getElementById('phone_ip').value;
-          var framesPerSecond = document.getElementById('frames_per_second').value;
-          // Draw the screen periodically:
-          var delay = 1000 / framesPerSecond;
-          intervalID = window.setInterval(draw, delay);
-        }
-      }
-      
-    </script>
-  </body>
+        var makeCanvas = function (id) {
+            var canvas = document.getElementById(id),
+                ctx = canvas.getContext('2d'),
+                imageObj = new Image();
+            //when image loads draw to canvas
+            imageObj.onload = function () {
+                ctx.drawImage(imageObj, 0, 0);
+            };
+            return imageObj;
+        };
+
+        // normalize requestAnimationFrame
+        var requestAnimationFrame = window.requestAnimationFrame ||
+                                    window.mozRequestAnimationFrame ||
+                                    window.webkitRequestAnimationFrame ||
+                                    window.msRequestAnimationFrame;
+        window.requestAnimationFrame = requestAnimationFrame;
+
+        var onImageLoad = function (id, w, h) {
+            makeCanvasElement(id, w, h); // phoneIP is used as ID
+            var image = makeCanvas(id),
+                phoneIP = id,
+                //create draw function to update image with requestAnimationFrame()
+                draw = function () {
+                    setTimeout((function () {
+                        image.src = 'http://' + phoneIP + '/cgi-bin/screen_shot';
+                        requestAnimationFrame(draw);
+                    }()), 1000);
+                };
+            //start redrawing screen
+            draw();
+        };
+
+        var add = function () {
+            var newDiv = document.createElement('div'),
+                phoneIP = document.getElementById('phone_ip').value;
+            newDiv.setAttribute('id', divCount);
+            document.body.appendChild(newDiv);
+            newDiv.innerHTML = "Loading...";
+            getDimensions(phoneIP, onImageLoad);
+        };
+
+        </script>
+    </body>
 </html>
