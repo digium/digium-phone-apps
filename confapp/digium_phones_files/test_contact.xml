@@ -1,0 +1,218 @@
+<?xml version="1.0" ?>
+<phonebooks>
+    <contacts group_name="test-group" editable="0" id="Default">
+
+		<contact 
+			id="600"
+			first_name="Alan" 
+			last_name="Dorner" 
+			contact_type="sip" 
+			organization="Digium" 
+			job_title="Director of IT" 
+			location="Minneapolis Office" 
+			account_id="adorner" 
+			subscribe_to="auto_hint_adorner"
+		>
+			<numbers>
+					<number dial="600" label="Extension" primary="1" />
+			</numbers>
+			<emails>
+					<email address="adorner@example.com" label="Work" primary="1" />
+			</emails>
+		</contact>
+
+		<contact 
+			id="601"
+			first_name="Ryan" 
+			last_name="Fergus" 
+			contact_type="sip" 
+			location="Kansas Office" 
+			account_id="refergus"
+			subscribe_to="auto_hint_rfergus"
+		>
+			<numbers>
+					<number dial="601" label="Extension" primary="1" />
+			</numbers>
+			<actions>
+				<action id="601" dial="601" label="Office" name="Office" />
+				<action id="blindxfer" dial="601" dial_prefix="" label="BlindXfer" name="Blind Transfer"/>
+				<action id="pickup" dial="601" label="Pickup" name="Pickup">
+					<headers>
+						<header key="X-Digium-Call-Feature" value="feature_pickup"/>
+					</headers>
+				</action> 
+				<action id="intercom" dial="601" label="Intercom" name="Intercom">
+					<headers>
+						<header key="X-Digium-Call-Feature" value="feature_intercom"/>
+					</headers>
+				</action> 
+				<action id="monitor" dial="601" label="Monitor" name="Monitor">
+					<headers>
+						<header key="X-Digium-Call-Feature" value="feature_monitor"/>
+					</headers>
+				</action> 
+			</actions>
+		</contact>
+
+		<contact 
+			id="602"
+			first_name="Mitch" 
+			last_name="Calderwood" 
+			contact_type="sip" 
+			location="Kansas Office" 
+			account_id="mcalderwood" 
+			subscribe_to="auto_hint_mcalderwood"
+		>
+			<numbers>
+					<number dial="602" label="Extension" primary="1" />
+			</numbers>
+		</contact>
+
+		<contact 
+			id="603"
+			first_name="Jared"
+			last_name="Rheamue" 
+			contact_type="sip" 
+			location="Kansas Office" 
+			account_id="jrheaume" 
+			subscribe_to="auto_hint_jrheaume"
+		>
+			<numbers>
+					<number dial="603" label="Extension" primary="1" />
+			</numbers>
+		</contact>
+
+		<contact 
+			id="604"
+			first_name="Michael" 
+			last_name="Adkison"
+			contact_type="sip"
+			account_id="madkison"
+			subscribe_to="auto_hint_madkison"
+		>
+			<numbers>
+				<number dial="604" label="Extension" primary="1" />
+			</numbers>
+		</contact>
+
+		<contact 
+			id="605"
+			first_name="Jay" 
+			last_name="Wong" 
+			contact_type="sip" 
+			account_id="jwong" 
+			subscribe_to="auto_hint_jwong"
+		>
+			<numbers>
+				<number dial="605" label="Extension" primary="1" />
+			</numbers>
+		</contact>
+
+		<contact 
+			id="606"
+			first_name="Eric" 
+			last_name="Babcock" 
+			contact_type="sip" 
+			account_id="ebabcock" 
+			subscribe_to="auto_hint_ebabcock"
+		>
+			<numbers>
+				<number dial="606" label="Extension" primary="1" />
+			</numbers>
+		</contact>
+
+		<contact 
+			id="607"
+			first_name="CJ" 
+			last_name="Fiero" 
+			contact_type="sip" 
+			account_id="cfiero" 
+			subscribe_to="auto_hint_cfiero"
+		>
+			<numbers>
+				<number dial="607" label="Extension" primary="1" />
+			</numbers>
+		</contact>
+
+		<contact 
+			id="608" 
+			first_name="Aaron" 
+			last_name="Gimbel" 
+			contact_type="sip" 
+			account_id="agimbel" 
+			subscribe_to="auto_hint_agimbel"
+		>
+			<numbers>
+				<number dial="608" label="Extension" primary="1" />
+			</numbers>
+		</contact>
+
+		<contact
+			id="609"
+			first_name="Vanessa"
+			last_name="Packard"
+			contact_type="sip"
+			account_id="vpackard"
+			subscribe_to="auto_hint_vpackard"
+		>
+		<numbers>
+			<number dial="609" label="Extension" primary="1" />
+		</numbers>
+		</contact>
+
+		<contact id="610" first_name="Christina" last_name="Eggert" contact_type="sip" account_id="ceggert" subscribe_to="auto_hint_ceggert">
+			<numbers>
+				<number dial="610" label="Extension" primary="1" />
+			</numbers>
+		</contact>
+
+		<contact id="611" first_name="Susan" last_name="Ballantine" contact_type="sip" account_id="sballantine" subscribe_to="auto_hint_sballantine">
+			<numbers>
+				<number dial="611" label="Extension" primary="1" />
+			</numbers>
+		</contact>
+
+		<contact id="612" first_name="Alicia" last_name="Raborn" contact_type="sip" account_id="araborn" subscribe_to="auto_hint_araborn">
+			<numbers>
+				<number dial="612" label="Extension" primary="1" />
+			</numbers>
+		</contact>
+
+		<contact id="613" first_name="Tina" last_name="Vang" contact_type="sip" account_id="tvang" subscribe_to="auto_hint_tvang">
+			<numbers>
+				<number dial="613" label="Extension" primary="1" />
+			</numbers>
+		</contact>
+
+		<contact id="614" first_name="Anna" last_name="Shugart" contact_type="sip" account_id="ashugart" subscribe_to="auto_hint_ashugart">
+			<numbers>
+				<number dial="614" label="Extension" primary="1" />
+			</numbers>
+		</contact>
+
+		<contact id="615" first_name="Daniella" last_name="Paoletti" contact_type="sip" account_id="dpaoletti" subscribe_to="auto_hint_dpaoletti">
+			<numbers>
+				<number dial="615" label="Extension" primary="1" />
+			</numbers>
+		</contact>
+
+		<contact id="616" first_name="Brittany" last_name="Cassell" contact_type="sip" account_id="bcassell" subscribe_to="auto_hint_bcassell">
+			<numbers>
+				<number dial="616" label="Extension" primary="1" />
+			</numbers>
+		</contact>
+
+		<contact id="617" first_name="June" last_name="Oshiro" contact_type="sip" account_id="joshiro" subscribe_to="auto_hint_joshiro">
+			<numbers>
+				<number dial="617" label="Extension" primary="1" />
+			</numbers>
+		</contact>
+
+		<contact id="618" first_name="Tracy" last_name="Halls" contact_type="sip" account_id="thalls" subscribe_to="auto_hint_thalls">
+			<numbers>
+				<number dial="618" label="Extension" primary="1" />
+			</numbers>
+		</contact>
+
+    </contacts>
+</phonebooks> 

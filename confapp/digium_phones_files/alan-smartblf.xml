@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<config>
+	<smart_blf>
+		<blf_items>
+			<blf_item location="side" index="0" paging="0" app_id="confapp" />
+			<blf_item location="side" index="1" paging="1" contact_id="600" />
+			<blf_item location="side" index="2" paging="1" contact_id="601">
+				<behaviors>
+                    <behavior press_action="601" press_function="dial" />
+					<behavior phone_state="incoming" press_action="blindxfer" press_function="transfer" />
+					<behavior phone_state="connected" press_action="blindxfer" press_function="transfer" />
+                    <behavior phone_state="incoming/transfer" press_action="blindxfer" press_function="transfer" />
+                    <behavior phone_state="hold/transfer" press_action="blindxfer" press_function="transfer" />
+                    <behavior target_status="ringing" press_action="pickup" press_function="dial" />
+					<behavior target_status="idle" long_press_action="intercom" long_press_function="dial" />
+					<behavior target_status="on_the_phone" press_action="monitor" press_function="dial" />
+                </behaviors>
+			</blf_item>
+			<blf_item location="side" index="3" paging="1" contact_id="602" />
+			<blf_item location="side" index="4" paging="1" contact_id="603" />
+			<blf_item location="side" index="5" paging="1" contact_id="604" />
+			<blf_item location="side" index="6" paging="1" contact_id="605" />
+			<blf_item location="side" index="7" paging="1" contact_id="606" />
+			<blf_item location="side" index="8" paging="1" contact_id="607" />
+			<blf_item location="side" index="9" paging="1" contact_id="608" />
+			<blf_item location="side" index="1" paging="1" contact_id="609" />
+			<blf_item location="side" index="2" paging="1" contact_id="610" />
+			<blf_item location="side" index="3" paging="1" contact_id="611" />
+			<blf_item location="side" index="4" paging="1" contact_id="612" />
+			<blf_item location="side" index="5" paging="1" contact_id="613" />
+			<blf_item location="side" index="6" paging="1" blank="1" />
+			<blf_item location="side" index="7" paging="1" blank="1" />
+			<blf_item location="side" index="3" paging="1" contact_id="614" />
+			<blf_item location="side" index="4" paging="1" contact_id="615" />
+			<blf_item location="side" index="5" paging="1" contact_id="616" />
+			<blf_item location="side" index="6" paging="1" contact_id="617" />
+		</blf_items>
+	</smart_blf>
+</config>

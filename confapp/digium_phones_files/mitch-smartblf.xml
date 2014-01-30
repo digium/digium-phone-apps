@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<config>
+	<smart_blf>
+		<blf_items>
+			<blf_item location="main" index="1" contact_id="601" />
+		</blf_items>
+	</smart_blf>
+</config>
